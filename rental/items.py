@@ -14,3 +14,12 @@ class RentalItem(scrapy.Item):
     adress=scrapy.Field()
     price=scrapy.Field()
     url=scrapy.Field()
+
+class IngatlanItem(scrapy.Item):
+    # define the fields for your item here like:
+    # name = scrapy.Field()
+    adress1=scrapy.Field()
+    adress2=scrapy.Field()
+    price=scrapy.Field()
+    size=scrapy.Field()
+    rooms=scrapy.Field()
