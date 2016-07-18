@@ -8,6 +8,7 @@ from scrapy.loader import ItemLoader
 from scrapy.http import Request
 
 from rental.items import IngatlanItem
+from scrapy.selector import Selector
 
 
 class IngatlanSpider(scrapy.Spider):
@@ -16,7 +17,7 @@ class IngatlanSpider(scrapy.Spider):
 
     # Start on the first index page
     start_urls = (
-        'http://ingatlan.com/lista/kiado+lakas+budapest',
+        'http://ingatlan.com/lista/elado+lakas+budapest',
     )
 
     custom_settings = {
@@ -32,25 +33,24 @@ class IngatlanSpider(scrapy.Spider):
 
         # Get item URLs and yield Requests
         item_selector = response.xpath('//*[contains(concat( " ", @class, " " ), concat( " ", "list-row", " " ))]')
-        for lakas in item_selector.extract():
-            yield parse_item(lakas)
+        for lakas in item_selector:
+            yield self.parse_item(lakas,response)
 
-    def parse_item(self, response):
-        """ This function parses a property page.
-        @url http://web:9312/properties/property_000000.html
-        @returns items 1
-        @scrapes title price description address image_urls
-        @scrapes url project spider server date
-        """
+    def parse_item(self, selector,response):
 
         # Create the loader using the response
-        l = ItemLoader(item=IngatlanItem(), response=response)
+        l = ItemLoader(item=IngatlanItem(), selector=selector)
 
         # Load fields using XPath expressions
-        l.add_xpath('price', '//*[contains(concat( " ", @class, " " ), concat( " ", "price-huf", " " ))]/text()')
-        l.add_xpath('adress1', '//*[contains(concat( " ", @class, " " ), concat( " ", "address-highlighted", " " ))]/text()')
-        l.add_xpath('adress2', '//*[contains(concat( " ", @class, " " ), concat( " ", "zone-address", " " ))]/text()')
-        l.add_xpath('size', '//*[contains(concat( " ", @class, " " ), concat( " ", "centered", " " )) and (((count(preceding-sibling::*) + 1) = 4) and parent::*)]//*[contains(concat( " ", @class, " " ), concat( " ", "numbers-highlight", " " ))]/text()')
-        l.add_xpath('rooms', '//*[contains(concat( " ", @class, " " ), concat( " ", "roomcount", " " ))]//*[contains(concat( " ", @class, " " ), concat( " ", "numbers-highlight", " " ))]/text()')
+        l.add_xpath('price', './/*[contains(concat( " ", @class, " " ), concat( " ", "price-huf", " " ))]//*[contains(concat( " ", @class, " " ), concat( " ", "numbers-highlight", " " ))]/text()',MapCompose(str.strip),Join(),MapCompose(lambda i: i.replace(' ','')))
+        l.add_xpath('adress1', './/*[contains(concat( " ", @class, " " ), concat( " ", "address-highlighted", " " ))]/text()')
+        l.add_xpath('adress2', './/*[contains(concat( " ", @class, " " ), concat( " ", "zone-address", " " ))]/text()')
+        l.add_xpath('adress3', './/*[contains(concat( " ", @class, " " ), concat( " ", "address", " " ))]/a/text()')
+        l.add_xpath('lon', './@data-lon')
+        l.add_xpath('lan', './@data-lan')
+        l.add_xpath('date', './@data-ld')
+        l.add_xpath('rentid', './@data-id')
+        l.add_xpath('size', './/*[contains(concat( " ", @class, " " ), concat( " ", "centered", " " )) and (((count(preceding-sibling::*) + 1) = 4) and parent::*)]//*[contains(concat( " ", @class, " " ), concat( " ", "numbers-highlight", " " ))]/text()')
+        l.add_xpath('rooms', './/*[contains(concat( " ", @class, " " ), concat( " ", "roomcount", " " ))]//*[contains(concat( " ", @class, " " ), concat( " ", "numbers-highlight", " " ))]/text()')
 
         return l.load_item()
