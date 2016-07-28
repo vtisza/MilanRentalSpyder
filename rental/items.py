@@ -11,9 +11,12 @@ import scrapy
 class RentalItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    adress=scrapy.Field()
+    size=scrapy.Field()
     price=scrapy.Field()
-    url=scrapy.Field()
+    address=scrapy.Field()
+    rooms=scrapy.Field()
+    elevator=scrapy.Field()
+    #floor=scrapy.Field()
 
 class IngatlanItem(scrapy.Item):
     # define the fields for your item here like:
