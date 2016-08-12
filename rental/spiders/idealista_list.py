@@ -13,7 +13,10 @@ from rental.items import RentalItem
 class IdealistaListSpider(scrapy.Spider):
     name = 'idealista_list'
     allowed_domains = ['idealista.it']
-    start_urls = ['https://www.idealista.it/affitto-case/milano-milano/']
+    #For rent
+    #start_urls = ['https://www.idealista.it/affitto-case/milano-provincia/']
+    #For sell
+    start_urls = ['https://www.idealista.it/vendita-case/milano-provincia/']
 
     custom_settings = {
         'ROBOTSTXT_OBEY': False,
@@ -22,7 +25,7 @@ class IdealistaListSpider(scrapy.Spider):
 
     def parse(self, response):
         # Get the next index URLs and yield Requests
-        next_selector = response.xpath('//*[contains(concat( " ", @class, " " ), concat( " ", "icon-arrow-right-after", " " ))]//span//@href')
+        next_selector = response.xpath('//*[contains(concat( " ", @class, " " ), concat( " ", "icon-arrow-right-after", " " ))]//@href')
         for url in next_selector.extract():
             yield Request(urljoin(response.url, url))
 
