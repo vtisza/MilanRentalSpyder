@@ -1,9 +1,9 @@
 queue()
-    .defer(d3.csv, "/compare.csv")
+    .defer(d3.csv, "compare.csv")
     .await(makeGraphs);
 
 function makeGraphs(error, data) {
-	
+
 
 
 	//Create a Crossfilter instance
@@ -19,8 +19,8 @@ function makeGraphs(error, data) {
 
 
 	//Calculate metrics
-	var numArea = areaDim.group(); 
-	var numInvestment = investmentDim.group(); 
+	var numArea = areaDim.group();
+	var numInvestment = investmentDim.group();
 	var numRentDifficultyGroup = rentDifficultyGroupDim.group();
 	var numSaleDifficultyGroup = saleDifficultyGroupDim.group();
 	var numSalePriceGroup = salePriceGroupDim.group();
