@@ -25,7 +25,6 @@ function makeGraphs(error, data) {
 	var numSaleDifficultyGroup = saleDifficultyGroupDim.group();
 	var numSalePriceGroup = salePriceGroupDim.group();
 	var numRentPriceGroup = rentPriceGroupDim.group();
-	});
 
 	var all = ndx.groupAll();
 
@@ -97,10 +96,6 @@ function makeGraphs(error, data) {
 	        .elasticX(true)
         	.labelOffsetY(10)
 	        .xAxis().ticks(4);
-
-
-
-		})
 
     dc.renderAll();
 
