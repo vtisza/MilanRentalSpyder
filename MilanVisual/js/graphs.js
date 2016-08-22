@@ -10,21 +10,23 @@ function makeGraphs(error, data) {
 	var ndx = crossfilter(data);
 
 	//Define Dimensions
-	var areaDim = ndx.dimension(function(d) { return d["area"]; });
+	var areaDim = ndx.dimension(function(d) { return d["area"]+':  '+(d.gross_yield* 100).toFixed(2) + '%'; });
 	var investmentDim = ndx.dimension(function(d) { return d["investment"]; });
 	var rentDifficultyGroupDim = ndx.dimension(function(d) { return d["rent_difficulty_group"]; });
 	var saleDifficultyGroupDim = ndx.dimension(function(d) { return d["sale_difficulty_group"]; });
 	var salePriceGroupDim = ndx.dimension(function(d) { return d["sale_price_group"]; });
 	var rentPriceGroupDim  = ndx.dimension(function(d) { return d["rent_price_group"]; });
+  var grossYieldDim  = ndx.dimension(function(d) { return +d["gross_yield"]; });
 
 
 	//Calculate metrics
-	var numArea = areaDim.group();
+	var numArea = areaDim.group().reduceSum(function (d) {return d.gross_yield;});
 	var numInvestment = investmentDim.group();
 	var numRentDifficultyGroup = rentDifficultyGroupDim.group();
 	var numSaleDifficultyGroup = saleDifficultyGroupDim.group();
 	var numSalePriceGroup = salePriceGroupDim.group();
 	var numRentPriceGroup = rentPriceGroupDim.group();
+  var numGrossYield = grossYieldDim.group().reduceSum(function (d) {return d.gross_yield;});
 
 	var all = ndx.groupAll();
 
@@ -38,14 +40,17 @@ function makeGraphs(error, data) {
 
 
 	areaChart
-	    .width(300)
-	    .height(150)
+	    .width(600)
+	    .height(800)
         	.dimension(areaDim)
 	        .group(numArea)
-        	.colors(['#6baed6'])
+          .ordering(function(d) { return -d.value })
+          .colors(['#6baed6'])
 	        .elasticX(true)
         	.labelOffsetY(10)
-	        .xAxis().ticks(4);
+	        .xAxis().ticks(4).tickFormat(function (v) {
+            return (v* 100).toFixed(2) + '%';
+        });
 
 	investmentChart
 	    .width(300)
