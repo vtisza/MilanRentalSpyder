@@ -75,7 +75,7 @@ function makeGraphs(error, data) {
 	        .xAxis().ticks(4);
 
 	rentDifPieChart
-		.width(450)
+		.width(150)
 		.height(150)
 		.dimension(rentDifficultyGroupDim)
 		.group(numRentDifficultyGroup)
@@ -95,7 +95,7 @@ function makeGraphs(error, data) {
 	        .xAxis().ticks(4);
 
 	saleDifPieChart
-		.width(450)
+		.width(150)
 		.height(150)
 		.dimension(saleDifficultyGroupDim)
 		.group(numSaleDifficultyGroup)
