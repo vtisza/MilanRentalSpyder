@@ -4,8 +4,6 @@ queue()
 
 function makeGraphs(error, data) {
 
-
-
 	//Create a Crossfilter instance
 	var ndx = crossfilter(data);
 
@@ -16,7 +14,7 @@ function makeGraphs(error, data) {
 	var saleDifficultyGroupDim = ndx.dimension(function(d) { return d["sale_difficulty_group"]; });
 	var salePriceGroupDim = ndx.dimension(function(d) { return d["sale_price_group"]; });
 	var rentPriceGroupDim  = ndx.dimension(function(d) { return d["rent_price_group"]; });
-    var grossYieldDim  = ndx.dimension(function(d) { return +d["gross_yield"]; });
+  var grossYieldDim  = ndx.dimension(function(d) { return +d["gross_yield"]; });
 
 
 	//Calculate metrics
@@ -26,19 +24,19 @@ function makeGraphs(error, data) {
 	var numSaleDifficultyGroup = saleDifficultyGroupDim.group();
 	var numSalePriceGroup = salePriceGroupDim.group();
 	var numRentPriceGroup = rentPriceGroupDim.group();
-    var numGrossYield = grossYieldDim.group().reduceSum(function (d) {return d.gross_yield;});
+  var numGrossYield = grossYieldDim.group().reduceSum(function (d) {return d.gross_yield;});
 
 	var all = ndx.groupAll();
 
-    //Charts
-	var areaChart = dc.rowChart("#area-chart");
-	var investmentChart = dc.rowChart("#investment-chart");
-	var rentDifChart = dc.rowChart("#rent-dif-chart");
-	var rentDifPieChart = dc.pieChart("#rent-dif-pie-chart");
-	var saleDifChart = dc.rowChart("#sale-dif-chart");
-	var saleDifPieChart = dc.pieChart("#sale-dif-pie-chart");
-	var rentPriceChart = dc.rowChart("#rent-price-chart");
-	var salePriceChart = dc.rowChart("#sale-price-chart");
+  //Charts
+	areaChart = dc.rowChart("#area-chart");
+	investmentChart = dc.rowChart("#investment-chart");
+	rentDifChart = dc.rowChart("#rent-dif-chart");
+	rentDifPieChart = dc.pieChart("#rent-dif-pie-chart");
+	saleDifChart = dc.rowChart("#sale-dif-chart");
+	saleDifPieChart = dc.pieChart("#sale-dif-pie-chart");
+	rentPriceChart = dc.rowChart("#rent-price-chart");
+	salePriceChart = dc.rowChart("#sale-price-chart");
 
 	areaChart
 	    .width(600)
