@@ -38,8 +38,10 @@ function makeGraphs(error, data) {
 	rentPriceChart = dc.rowChart("#rent-price-chart");
 	salePriceChart = dc.rowChart("#sale-price-chart");
 
+  var width = document.getElementById("area").offsetWidth-20;
+
 	areaChart
-	    .width(600)
+	    .width(width)
 	    .height(1000)
         	.dimension(areaDim)
 	        .group(numArea)
