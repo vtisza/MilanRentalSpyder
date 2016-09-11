@@ -16,7 +16,7 @@ function makeGraphs(error, data) {
 	var saleDifficultyGroupDim = ndx.dimension(function(d) { return d["sale_difficulty_group"]; });
 	var salePriceGroupDim = ndx.dimension(function(d) { return d["sale_price_group"]; });
 	var rentPriceGroupDim  = ndx.dimension(function(d) { return d["rent_price_group"]; });
-  var grossYieldDim  = ndx.dimension(function(d) { return +d["gross_yield"]; });
+    var grossYieldDim  = ndx.dimension(function(d) { return +d["gross_yield"]; });
 
 
 	//Calculate metrics
@@ -26,7 +26,7 @@ function makeGraphs(error, data) {
 	var numSaleDifficultyGroup = saleDifficultyGroupDim.group();
 	var numSalePriceGroup = salePriceGroupDim.group();
 	var numRentPriceGroup = rentPriceGroupDim.group();
-  var numGrossYield = grossYieldDim.group().reduceSum(function (d) {return d.gross_yield;});
+    var numGrossYield = grossYieldDim.group().reduceSum(function (d) {return d.gross_yield;});
 
 	var all = ndx.groupAll();
 
@@ -34,23 +34,25 @@ function makeGraphs(error, data) {
 	var areaChart = dc.rowChart("#area-chart");
 	var investmentChart = dc.rowChart("#investment-chart");
 	var rentDifChart = dc.rowChart("#rent-dif-chart");
+	var rentDifPieChart = dc.pieChart("#rent-dif-pie-chart");
 	var saleDifChart = dc.rowChart("#sale-dif-chart");
+	var saleDifPieChart = dc.pieChart("#sale-dif-pie-chart");
 	var rentPriceChart = dc.rowChart("#rent-price-chart");
 	var salePriceChart = dc.rowChart("#sale-price-chart");
 
-
 	areaChart
 	    .width(600)
-	    .height(800)
+	    .height(1000)
         	.dimension(areaDim)
 	        .group(numArea)
-          .ordering(function(d) { return -d.value })
-          .colors(['#6baed6'])
+            .ordering(function(d) { return -d.value })
+            .colors(['#6baed6'])
 	        .elasticX(true)
-        	.labelOffsetY(10)
+			.labelOffsetY(10)
+			.turnOnControls(true)
 	        .xAxis().ticks(4).tickFormat(function (v) {
             return (v* 100).toFixed(2) + '%';
-        });
+			});
 
 	investmentChart
 	    .width(300)
@@ -58,8 +60,8 @@ function makeGraphs(error, data) {
         	.dimension(investmentDim)
 	        .group(numInvestment)
         	.colors(['#6baed6'])
-	        .elasticX(true)
-        	.labelOffsetY(10)
+			.ordering(function(d) { return d.value })
+			.elasticX(true)
 	        .xAxis().ticks(4);
 
 	rentDifChart
@@ -68,9 +70,19 @@ function makeGraphs(error, data) {
         	.dimension(rentDifficultyGroupDim)
 	        .group(numRentDifficultyGroup)
         	.colors(['#6baed6'])
+			.ordering(function(d) { return d.value })
 	        .elasticX(true)
-        	.labelOffsetY(10)
 	        .xAxis().ticks(4);
+
+	rentDifPieChart
+		.width(450)
+		.height(150)
+		.dimension(rentDifficultyGroupDim)
+		.group(numRentDifficultyGroup)
+		.ordering(function(d) { return d.value })
+		.slicesCap(17)
+		.innerRadius(30)
+
 
 	saleDifChart
 	    .width(300)
@@ -78,9 +90,18 @@ function makeGraphs(error, data) {
         	.dimension(saleDifficultyGroupDim)
 	        .group(numSaleDifficultyGroup)
         	.colors(['#6baed6'])
+			.ordering(function(d) { return d.value })
 	        .elasticX(true)
-        	.labelOffsetY(10)
 	        .xAxis().ticks(4);
+
+	saleDifPieChart
+		.width(450)
+		.height(150)
+		.dimension(saleDifficultyGroupDim)
+		.group(numSaleDifficultyGroup)
+		.ordering(function(d) { return d.value })
+		.slicesCap(17)
+		.innerRadius(30)
 
 	rentPriceChart
 	    .width(300)
@@ -88,8 +109,8 @@ function makeGraphs(error, data) {
         	.dimension(rentPriceGroupDim)
 	        .group(numRentPriceGroup)
         	.colors(['#6baed6'])
+			.ordering(function(d) { return d.value })
 	        .elasticX(true)
-        	.labelOffsetY(10)
 	        .xAxis().ticks(4);
 
 	salePriceChart
@@ -98,8 +119,8 @@ function makeGraphs(error, data) {
         	.dimension(salePriceGroupDim)
 	        .group(numSalePriceGroup)
         	.colors(['#6baed6'])
+			.ordering(function(d) { return d.value })
 	        .elasticX(true)
-        	.labelOffsetY(10)
 	        .xAxis().ticks(4);
 
     dc.renderAll();
