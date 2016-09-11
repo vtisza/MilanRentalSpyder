@@ -1,0 +1,24 @@
+#number-projects-nd {
+    font-size: 60px;
+}
+
+#total-donations-nd {
+    font-size: 60px;
+}
+
+.dc-chart g.row text {
+    fill: rgba(21, 21, 21, 0.96);
+    font-size: 12px;
+    -webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10 */
+    -o-user-select: none;
+    user-select: none;
+    pointer-events: none;
+}
+
+canvas{
+    width: 100% !important;
+    max-width: 800px;
+    height: auto !important;
+}
