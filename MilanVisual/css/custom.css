@@ -7,6 +7,12 @@
 }
 
 .dc-chart g.row text {
-    fill: black;
+    fill: rgba(21, 21, 21, 0.96);
     font-size: 12px;
+    -webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10 */
+    -o-user-select: none;
+    user-select: none;
+    pointer-events: none;
 }

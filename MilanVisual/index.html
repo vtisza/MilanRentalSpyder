@@ -30,10 +30,11 @@
           <div class="col-sm-12">
             <div class="chart-wrapper">
               <div class="chart-title">
-                Area
+                Area <a href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
               </div>
               <div class="chart-stage">
-                <div id="area-chart"></div>
+                <div id="area-chart">
+                </div>
               </div>
             </div>
           </div>
@@ -50,7 +51,15 @@
                 Investment recommendation
               </div>
               <div class="chart-stage">
-                <div id="investment-chart"></div>
+                <div id="investment-chart">
+                  <span>
+                  <a class="reset"
+                     href="javascript:investmentChart.filterAll();dc.redrawAll();"
+                     style="display: none;">
+                    reset
+                  </a>
+                    </span>
+                </div>
               </div>
             </div>
           </div>
@@ -63,7 +72,7 @@
                 Rent difficulty
               </div>
               <div class="chart-stage">
-                <div id="rent-dif-chart"></div>
+                <div id="rent-dif-pie-chart"></div>
               </div>
             </div>
           </div>
@@ -76,7 +85,7 @@
             Sale difficulty
           </div>
           <div class="chart-stage">
-            <div id="sale-dif-chart"></div>
+            <div id="sale-dif-pie-chart"></div>
           </div>
         </div>
       </div>
