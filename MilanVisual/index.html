@@ -10,6 +10,7 @@
 
 
 </head>
+
 <body class="application">
 
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -20,7 +21,7 @@
     </div>
   </div>
 
-  <div class="container-fluid">
+  <div class="container-fluid" id="charts">
 
     <div class="row">
 
@@ -30,12 +31,8 @@
           <!-- Time Chart -->
           <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="chart-wrapper">
-              <div class="chart-title" id="area" data-toggle="tooltip" title="
-Based on 9.780 rental ads and 40.744 home sale ads in Milan area.
-Duplicated ads and extreme values were removed.
-
-Investment return=(Average annual rent income per sqm)/(Average sales price per sqm)">
-                Return on Investment per Area  |  <a href="javascript:dc.filterAll(); dc.renderAll();">Reset Filters</a>
+              <div class="chart-title" id="area">
+                Area  |  <a href="javascript:dc.filterAll(); dc.renderAll();">Reset Filters</a>
               </div>
               <div class="chart-stage">
                 <div id="area-chart">
@@ -52,15 +49,7 @@ Investment return=(Average annual rent income per sqm)/(Average sales price per 
           <!-- Resources Pie -->
           <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="chart-wrapper">
-              <div class="chart-title" data-toggle="tooltip" title="
-Based on price-to-rent ratio. ( =(Average sales price per sqm)/(Average annual rent income per sqm)
-represents how many years are required to produce the nominal value of the investment)
-
-If price-to-rent ratio:
-  <15: Recommended to buy
-  15-21: To be evaluated
-  >21: Recommended to rent"
->
+              <div class="chart-title">
                 Investment recommendation
               </div>
               <div class="chart-stage">
@@ -81,8 +70,7 @@ If price-to-rent ratio:
           <!-- Poverty Pie -->
           <div class="col-xs-12 col-sm-3 col-md-3">
             <div class="chart-wrapper">
-              <div class="chart-title"  data-toggle="tooltip" title="
-Difficulty is based on how many times an advertisment must be repeated before selling/renting">
+              <div class="chart-title">
                 Rent difficulty
               </div>
               <div class="chart-stage">
@@ -103,8 +91,7 @@ Difficulty is based on how many times an advertisment must be repeated before se
       <!-- Map -->
       <div class="col-xs-12 col-sm-3 col-md-3">
         <div class="chart-wrapper">
-          <div class="chart-title" data-toggle="tooltip" title="
-Difficulty is based on how many times an advertisment must be repeated before selling/renting">
+          <div class="chart-title">
             Sale difficulty
           </div>
           <div class="chart-stage">
@@ -125,11 +112,7 @@ Difficulty is based on how many times an advertisment must be repeated before se
       <!-- Metric 1 -->
       <div class="col-xs-12 col-sm-3 col-md-3">
         <div class="chart-wrapper">
-          <div class="chart-title"   data-toggle="tooltip" title="
-If monthly rent price per sqm:
-  <13 EUR   : Cheap
-  13-16 EUR : Medium
-  >16 EUR   : Expensive">
+          <div class="chart-title">
             Rent price
           </div>
           <div class="chart-stage">
@@ -150,11 +133,7 @@ If monthly rent price per sqm:
       <!-- Metric 2 -->
       <div class="col-xs-12 col-sm-3 col-md-3">
         <div class="chart-wrapper">
-          <div class="chart-title"    data-toggle="tooltip" title="
-If sale price per sqm:
-  <2500 EUR     : Cheap
-  2500-4000 EUR : Medium
-  >4000 EUR     : Expensive">
+          <div class="chart-title">
             Sale price
           </div>
           <div class="chart-stage">
@@ -175,7 +154,6 @@ If sale price per sqm:
     </div>
 
   </div>
-
 
   </div>
 
