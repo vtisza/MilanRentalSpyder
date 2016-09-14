@@ -24,7 +24,7 @@ canvas{
 }
 
 body.application{
-  background: url('/pics/milan-705880_1920.jpg') no-repeat center center fixed;
+  background: url('/pics/milan.jpg') no-repeat center center fixed;
   background-size:cover;
   opacity: 0.9;
 }
