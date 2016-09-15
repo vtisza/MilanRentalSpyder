@@ -22,3 +22,9 @@ canvas{
     max-width: 800px;
     height: auto !important;
 }
+
+body.application{
+  background: url('https://vtisza.github.io/MilanRentalSpyder/BudapestVisual/pics/budapest1.jpg') no-repeat center center fixed;
+  background-size:cover;
+  opacity: 0.9;
+}
