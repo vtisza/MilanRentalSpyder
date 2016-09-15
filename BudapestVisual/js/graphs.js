@@ -42,7 +42,7 @@ function makeGraphs(error, data) {
 
 	areaChart
 	    .width(width)
-	    .height(1000)
+	    .height(600)
         	.dimension(areaDim)
 	        .group(numArea)
             .ordering(function(d) { return -d.value })
