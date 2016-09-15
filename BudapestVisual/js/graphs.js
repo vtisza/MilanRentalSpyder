@@ -42,13 +42,13 @@ function makeGraphs(error, data) {
 
 	areaChart
 	    .width(width)
-	    .height(600)
+	    .height(700)
         	.dimension(areaDim)
 	        .group(numArea)
             .ordering(function(d) { return -d.value })
             .colors(['#6baed6'])
 	        .elasticX(true)
-			.labelOffsetY(10)
+			.labelOffsetY(15)
 			.turnOnControls(true)
 	        .xAxis().ticks(4).tickFormat(function (v) {
             return (v* 100).toFixed(2) + '%';
