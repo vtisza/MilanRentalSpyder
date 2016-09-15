@@ -24,7 +24,7 @@ canvas{
 }
 
 body.application{
-  background: url('{{ site.base-url }}/pics/milan.jpg') no-repeat center center fixed;
+  background: url('{{ site.baseurl }}/pics/milan.jpg') no-repeat center center fixed;
   background-size:cover;
   opacity: 0.9;
 }
